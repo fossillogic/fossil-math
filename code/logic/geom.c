@@ -11,7 +11,7 @@
  * Copyright (C) 2024 Fossil Logic. All rights reserved.
  * -----------------------------------------------------------------------------
  */
-#include "fossil/math/math.h"
+#include "fossil/math/geom.h"
 #include <math.h>
 
 // ======================================================

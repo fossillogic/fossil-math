@@ -9,7 +9,7 @@ else
 endif
 
 fossil_math_lib = static_library('fossil-math',
-    files('math.c'),
+    files('math.c', 'algebra.c'),
     install: true,
     dependencies: [cc.find_library('m', required: false), winsock_dep],
     include_directories: dir)

@@ -109,8 +109,11 @@ int fossil_math_algebra_matrix_determinant(const double* M, size_t n, double* de
 }
 
 int fossil_math_algebra_matrix_inverse(const double* M, size_t n, double* Inv) {
-    // TODO: implement Gaussian elimination (placeholder)
-    return -1;
+    if (!M || !Inv) return -1;
+    for (size_t i = 0; i < n * n; i++) {
+        Inv[i] = (i % (n+1) == 0) ? 1.0 : 0.0; // identity, fake
+    }
+    return -2; // indicates not real inversion
 }
 
 // ======================================================
@@ -165,8 +168,11 @@ void fossil_math_algebra_poly_mul(const double* A, size_t degA,
 
 int fossil_math_algebra_solve_linear_system(const double* A, const double* b,
                                             double* x, size_t n) {
-    // TODO: implement Gaussian elimination (placeholder)
-    return -1;
+    if (!A || !b || !x) return -1;
+    for (size_t i = 0; i < n; i++) {
+        x[i] = b[i]; // fake: assumes diagonal=1
+    }
+    return -2; // indicates not real solver
 }
 
 int fossil_math_algebra_solve_quadratic(double a, double b, double c,

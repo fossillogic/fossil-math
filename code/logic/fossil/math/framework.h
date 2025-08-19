@@ -15,5 +15,8 @@
 #define FOSSIL_MATH_FRAMEWORK_H
 
 #include "math.h"
+#include "algebra.h"
+#include "geom.h"
+#include "trig.h"
 
 #endif /* FOSSIL_MATH_FRAMEWORK_H */

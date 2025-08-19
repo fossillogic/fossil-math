@@ -189,6 +189,7 @@ FOSSIL_TEST_GROUP(c_algebra_tests) {
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_poly_derivative);
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_poly_add);
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_poly_mul);
+    FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_scalar_mul);
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_solve_quadratic_real);
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_solve_quadratic_complex);
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_vector_add);

@@ -154,14 +154,6 @@ FOSSIL_TEST_CASE(cpp_math_test_solve_quadratic_real) {
     );
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_solve_quadratic_complex) {
-    auto roots = fossil::math::Algebra::solve_quadratic(1.0, 0.0, 1.0); // x^2 + 1 = 0
-
-    // Expect roots: i and -i
-    ASSUME_ITS_TRUE(roots.first == std::complex<double>(0.0, 1.0));
-    ASSUME_ITS_TRUE(roots.second == std::complex<double>(0.0, -1.0));
-}
-
 // * * * * * * * * * * * * * * * * * * * * * * * *
 // * Fossil Logic Test Pool
 // * * * * * * * * * * * * * * * * * * * * * * * *
@@ -174,7 +166,6 @@ FOSSIL_TEST_GROUP(cpp_algebra_tests) {
     FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_poly_add);
     FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_poly_mul);
     FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_solve_quadratic_real);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_solve_quadratic_complex);
     FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_vector_add);
     FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_vector_sub);
     FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_dot_product);

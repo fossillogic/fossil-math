@@ -193,7 +193,7 @@ FOSSIL_TEST_GROUP(c_algebra_tests) {
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_solve_quadratic_complex);
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_vector_add);
     FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_vector_sub);
-    FOSSIL_TEST_ADD(c_algebra_fixture, test_case_c_math_test_dot_product);
+    FOSSIL_TEST_ADD(c_algebra_fixture, c_math_test_dot_product);
 
     FOSSIL_TEST_REGISTER(c_algebra_fixture);
 } // end of tests

@@ -155,12 +155,11 @@ FOSSIL_TEST_CASE(cpp_math_test_solve_quadratic_real) {
 }
 
 FOSSIL_TEST_CASE(cpp_math_test_solve_quadratic_complex) {
-    try {
-        auto roots = fossil::math::Algebra::solve_quadratic(1, 0, 1); // x^2 + 1 = 0
-        ASSUME_ITS_TRUE(false); // Should not reach here
-    } catch (const std::runtime_error&) {
-        ASSUME_ITS_TRUE(true); // Exception expected
-    }
+    auto roots = fossil::math::Algebra::solve_quadratic(1.0, 0.0, 1.0); // x^2 + 1 = 0
+
+    // Expect roots: i and -i
+    ASSUME_ITS_TRUE(roots.first == std::complex<double>(0.0, 1.0));
+    ASSUME_ITS_TRUE(roots.second == std::complex<double>(0.0, -1.0));
 }
 
 // * * * * * * * * * * * * * * * * * * * * * * * *

@@ -14,15 +14,7 @@
 #ifndef FOSSIL_MATH_TRIG_H
 #define FOSSIL_MATH_TRIG_H
 
-#include <stddef.h>
-#include <stdint.h>
-
-// ======================================================
-// Constants
-// ======================================================
-#define FOSSIL_MATH_PI 3.14159265358979323846
-#define FOSSIL_MATH_TWO_PI (2.0 * FOSSIL_MATH_PI)
-#define FOSSIL_MATH_HALF_PI (0.5 * FOSSIL_MATH_PI)
+#include "math.h"
 
 #ifdef __cplusplus
 extern "C"

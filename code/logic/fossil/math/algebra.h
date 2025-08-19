@@ -14,7 +14,7 @@
 #ifndef FOSSIL_MATH_ALGEBRA_H
 #define FOSSIL_MATH_ALGEBRA_H
 
-#include <stddef.h>
+#include "math.h"
 
 #ifdef __cplusplus
 extern "C"

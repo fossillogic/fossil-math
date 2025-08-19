@@ -36,11 +36,11 @@ double fossil_math_geom_distance3d(fossil_math_geom_point3d a,
 // Circle
 // ======================================================
 double fossil_math_geom_circle_area(fossil_math_geom_circle c) {
-    return M_PI * c.radius * c.radius;
+    return FOSSIL_MATH_PI * c.radius * c.radius;
 }
 
 double fossil_math_geom_circle_circumference(fossil_math_geom_circle c) {
-    return 2.0 * M_PI * c.radius;
+    return 2.0 * FOSSIL_MATH_PI * c.radius;
 }
 
 int fossil_math_geom_point_in_circle(fossil_math_geom_point2d p,

@@ -29,38 +29,34 @@
 - **Meson Build System**  
   Fossil Math uses Meson for build configuration. If you don’t have Meson installed, follow the instructions on the official [Meson website](https://mesonbuild.com/Getting-meson.html).
 
-### Adding Fossil Math as a Dependency
+### Adding Dependency
 
-#### Using Meson
+#### Adding via Meson Git Wrap
 
-### **Install or Upgrade Meson** (version 1.3 or newer recommended):
+To add a git-wrap, place a `.wrap` file in `subprojects` with the Git repo URL and revision, then use `dependency('fossil-math')` in `meson.build` so Meson can fetch and build it automatically.
 
-```sh
-   python -m pip install meson           # Install Meson
-   python -m pip install --upgrade meson # Upgrade Meson
+#### Adding via Conan GitHub repository
+
+ packages directly from a GitHub repository if it contains a valid `conanfile.py`.
+
+```bash
+conan install git+https://github.com/fossillogic/fossil-math.git#v0.1.1 --name fossil_math --build=missing
 ```
-###	Add the .wrap File
-Place a file named fossil-math.wrap in your subprojects directory with the following content:
+
+#### Integrate the Dependency:
+
+Add the `fossil-math.wrap` file in your `subprojects` directory and include the following content:
 
 ```ini
-# ======================
-# Git Wrap package definition
-# ======================
 [wrap-git]
 url = https://github.com/fossillogic/fossil-math.git
-revision = v0.1.0
+revision = v0.1.1
 
 [provide]
-fossil-math = fossil_math_dep
+dependency_names = fossil-math
 ```
 
-###	Integrate in Your meson.build
-Add the dependency by including this line:
-
-```meson
-math_dep = dependency('fossil-math')
-```
-
+**Note**: For the best experience, always use the latest releases. Visit the [releases](https://github.com/fossillogic/fossil-math/releases) page for the latest versions.
 
 ## Build Configuration Options
 

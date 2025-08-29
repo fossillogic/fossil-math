@@ -17,3 +17,5 @@ fossil_math_lib = library('fossil_math',
 fossil_math_dep = declare_dependency(
     link_with: [fossil_math_lib],
     include_directories: dir)
+
+meson.override_dependency('fossil-math', fossil_math_dep)

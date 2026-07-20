@@ -17,12 +17,12 @@
  * under the License.
  *
  * Author: Michael Gene Brockus (Dreamer)
- * Date: 04/05/2014
+ * Date: 04/05/2013
  *
- * Copyright (C) 2014-2025 Fossil Logic. All rights reserved.
+ * Copyright (C) 2013-Current Fossil Logic. All rights reserved.
  * -----------------------------------------------------------------------------
  */
-#include <fossil/pizza/framework.h>
+#include <fossil/maip/framework.h>
 #include "fossil/math/framework.h"
 
 
@@ -33,7 +33,7 @@
 // mock objects are set here.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_SUITE(cpp_math_fixture);
+FOSSIL_SUITE(cpp_math_fixture);
 
 FOSSIL_SETUP(cpp_math_fixture) {
     // Setup the test fixture
@@ -51,7 +51,7 @@ FOSSIL_TEARDOWN(cpp_math_fixture) {
 // as samples for library usage.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_CASE(cpp_math_test_constants) {
+FOSSIL_TEST(cpp_math_test_constants) {
     ASSUME_ITS_EQUAL_F64(FOSSIL_MATH_PI, 3.14159265358979323846, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(FOSSIL_MATH_TWO_PI, 6.28318530717958647692, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(FOSSIL_MATH_HALF_PI, 1.57079632679489661923, FOSSIL_TEST_FLOAT_EPSILON);
@@ -66,7 +66,7 @@ FOSSIL_TEST_CASE(cpp_math_test_constants) {
     ASSUME_ITS_EQUAL_F64(FOSSIL_MATH_RAD2DEG, 180.0 / FOSSIL_MATH_PI, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_macros) {
+FOSSIL_TEST(cpp_math_test_macros) {
     ASSUME_ITS_TRUE(FOSSIL_MATH_MIN(3, 5) == 3);
     ASSUME_ITS_TRUE(FOSSIL_MATH_MAX(3, 5) == 5);
     ASSUME_ITS_TRUE(FOSSIL_MATH_CLAMP(10, 0, 5) == 5);
@@ -79,58 +79,58 @@ FOSSIL_TEST_CASE(cpp_math_test_macros) {
     ASSUME_ITS_TRUE(FOSSIL_MATH_SQR(-3) == 9);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_abs) {
+FOSSIL_TEST(cpp_math_test_abs) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::abs(5.0), 5.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::abs(-5.0), 5.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::abs(0.0), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_safe_div) {
+FOSSIL_TEST(cpp_math_test_safe_div) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::safe_div(10.0, 2.0, -1.0), 5.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::safe_div(10.0, 0.0, -1.0), -1.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::safe_div(0.0, 0.0, 42.0), 42.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_equal) {
+FOSSIL_TEST(cpp_math_test_equal) {
     ASSUME_ITS_TRUE(fossil::math::Math::equal(1.0, 1.0 + 1e-10, 1e-9));
     ASSUME_ITS_TRUE(!fossil::math::Math::equal(1.0, 1.1, 1e-3));
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_lerp) {
+FOSSIL_TEST(cpp_math_test_lerp) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::lerp(0.0, 10.0, 0.0), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::lerp(0.0, 10.0, 1.0), 10.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::lerp(0.0, 10.0, 0.5), 5.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_smoothstep) {
+FOSSIL_TEST(cpp_math_test_smoothstep) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::smoothstep(0.0, 1.0, -1.0), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::smoothstep(0.0, 1.0, 0.0), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::smoothstep(0.0, 1.0, 1.0), 1.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::smoothstep(0.0, 1.0, 0.5), 0.5, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_factorial) {
+FOSSIL_TEST(cpp_math_test_factorial) {
     ASSUME_ITS_TRUE(fossil::math::Math::factorial(0) == 1ULL);
     ASSUME_ITS_TRUE(fossil::math::Math::factorial(1) == 1ULL);
     ASSUME_ITS_TRUE(fossil::math::Math::factorial(5) == 120ULL);
     ASSUME_ITS_TRUE(fossil::math::Math::factorial(10) == 3628800ULL);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_binomial) {
+FOSSIL_TEST(cpp_math_test_binomial) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::binomial(5, 2), 10.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::binomial(10, 0), 1.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::binomial(10, 10), 1.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::binomial(10, 11), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_wrap) {
+FOSSIL_TEST(cpp_math_test_wrap) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::wrap(370.0, 0.0, 360.0), 10.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::wrap(-10.0, 0.0, 360.0), 350.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::wrap(180.0, 0.0, 360.0), 180.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::wrap(0.0, 0.0, 0.0), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_mod) {
+FOSSIL_TEST(cpp_math_test_mod) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::mod(10.0, 3.0), 1.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::mod(-10.0, 3.0), 2.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Math::mod(10.0, -3.0), -2.0, FOSSIL_TEST_FLOAT_EPSILON);
@@ -142,17 +142,17 @@ FOSSIL_TEST_CASE(cpp_math_test_mod) {
 // * Fossil Logic Test Pool
 // * * * * * * * * * * * * * * * * * * * * * * * *
 FOSSIL_TEST_GROUP(cpp_math_tests) {
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_constants);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_macros);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_abs);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_safe_div);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_equal);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_lerp);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_smoothstep);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_factorial);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_binomial);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_wrap);
-    FOSSIL_TEST_ADD(cpp_math_fixture, cpp_math_test_mod);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_constants);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_macros);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_abs);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_safe_div);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_equal);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_lerp);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_smoothstep);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_factorial);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_binomial);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_wrap);
+    FOSSIL_ADD_TEST(cpp_math_fixture, cpp_math_test_mod);
 
-    FOSSIL_TEST_REGISTER(cpp_math_fixture);
+    FOSSIL_ADD_SUITE(cpp_math_fixture);
 } // end of tests

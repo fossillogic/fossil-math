@@ -17,12 +17,12 @@
  * under the License.
  *
  * Author: Michael Gene Brockus (Dreamer)
- * Date: 04/05/2014
+ * Date: 04/05/2013
  *
- * Copyright (C) 2014-2025 Fossil Logic. All rights reserved.
+ * Copyright (C) 2013-Current Fossil Logic. All rights reserved.
  * -----------------------------------------------------------------------------
  */
-#include <fossil/pizza/framework.h>
+#include <fossil/maip/framework.h>
 #include "fossil/math/framework.h"
 
 
@@ -33,7 +33,7 @@
 // mock objects are set here.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_SUITE(cpp_tensor_fixture);
+FOSSIL_SUITE(cpp_tensor_fixture);
 
 FOSSIL_SETUP(cpp_tensor_fixture) {
     // Setup the test fixture
@@ -51,7 +51,7 @@ FOSSIL_TEARDOWN(cpp_tensor_fixture) {
 // as samples for library usage.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_CASE(cpp_tensor_test_create_and_free) {
+FOSSIL_TEST(cpp_tensor_test_create_and_free) {
     std::vector<size_t> shape = {2, 3};
     fossil_math_tensor_t* t = fossil::math::Tensor::create(shape);
     ASSUME_ITS_TRUE(t != NULL);
@@ -60,7 +60,7 @@ FOSSIL_TEST_CASE(cpp_tensor_test_create_and_free) {
     fossil::math::Tensor::free(t);
 }
 
-FOSSIL_TEST_CASE(cpp_tensor_test_set_and_get) {
+FOSSIL_TEST(cpp_tensor_test_set_and_get) {
     std::vector<size_t> shape = {2, 2};
     fossil_math_tensor_t* t = fossil::math::Tensor::create(shape);
     std::vector<size_t> idx = {1, 0};
@@ -70,7 +70,7 @@ FOSSIL_TEST_CASE(cpp_tensor_test_set_and_get) {
     fossil::math::Tensor::free(t);
 }
 
-FOSSIL_TEST_CASE(cpp_tensor_test_fill) {
+FOSSIL_TEST(cpp_tensor_test_fill) {
     std::vector<size_t> shape = {3};
     fossil_math_tensor_t* t = fossil::math::Tensor::create(shape);
     fossil::math::Tensor::fill(t, 7.0);
@@ -82,7 +82,7 @@ FOSSIL_TEST_CASE(cpp_tensor_test_fill) {
     fossil::math::Tensor::free(t);
 }
 
-FOSSIL_TEST_CASE(cpp_tensor_test_add) {
+FOSSIL_TEST(cpp_tensor_test_add) {
     std::vector<size_t> shape = {2};
     fossil_math_tensor_t* a = fossil::math::Tensor::create(shape);
     std::vector<size_t> idx0 = {0}, idx1 = {1};
@@ -103,7 +103,7 @@ FOSSIL_TEST_CASE(cpp_tensor_test_add) {
     fossil::math::Tensor::free(r);
 }
 
-FOSSIL_TEST_CASE(cpp_tensor_test_mul) {
+FOSSIL_TEST(cpp_tensor_test_mul) {
     std::vector<size_t> shape = {2};
     fossil_math_tensor_t* a = fossil::math::Tensor::create(shape);
     std::vector<size_t> idx0 = {0}, idx1 = {1};
@@ -124,7 +124,7 @@ FOSSIL_TEST_CASE(cpp_tensor_test_mul) {
     fossil::math::Tensor::free(r);
 }
 
-FOSSIL_TEST_CASE(cpp_tensor_test_dot_vector) {
+FOSSIL_TEST(cpp_tensor_test_dot_vector) {
     std::vector<size_t> shape = {3};
     fossil_math_tensor_t* a = fossil::math::Tensor::create(shape);
     fossil_math_tensor_t* b = fossil::math::Tensor::create(shape);
@@ -142,7 +142,7 @@ FOSSIL_TEST_CASE(cpp_tensor_test_dot_vector) {
     fossil::math::Tensor::free(r);
 }
 
-FOSSIL_TEST_CASE(cpp_tensor_test_dot_matrix) {
+FOSSIL_TEST(cpp_tensor_test_dot_matrix) {
     std::vector<size_t> shapeA = {2, 2};
     std::vector<size_t> shapeB = {2, 2};
     fossil_math_tensor_t* a = fossil::math::Tensor::create(shapeA);
@@ -174,13 +174,13 @@ FOSSIL_TEST_CASE(cpp_tensor_test_dot_matrix) {
 // * Fossil Logic Test Pool
 // * * * * * * * * * * * * * * * * * * * * * * * *
 FOSSIL_TEST_GROUP(cpp_tensor_tests) {
-    FOSSIL_TEST_ADD(cpp_tensor_fixture, cpp_tensor_test_create_and_free);
-    FOSSIL_TEST_ADD(cpp_tensor_fixture, cpp_tensor_test_set_and_get);
-    FOSSIL_TEST_ADD(cpp_tensor_fixture, cpp_tensor_test_fill);
-    FOSSIL_TEST_ADD(cpp_tensor_fixture, cpp_tensor_test_add);
-    FOSSIL_TEST_ADD(cpp_tensor_fixture, cpp_tensor_test_mul);
-    FOSSIL_TEST_ADD(cpp_tensor_fixture, cpp_tensor_test_dot_vector);
-    FOSSIL_TEST_ADD(cpp_tensor_fixture, cpp_tensor_test_dot_matrix);
+    FOSSIL_ADD_TEST(cpp_tensor_fixture, cpp_tensor_test_create_and_free);
+    FOSSIL_ADD_TEST(cpp_tensor_fixture, cpp_tensor_test_set_and_get);
+    FOSSIL_ADD_TEST(cpp_tensor_fixture, cpp_tensor_test_fill);
+    FOSSIL_ADD_TEST(cpp_tensor_fixture, cpp_tensor_test_add);
+    FOSSIL_ADD_TEST(cpp_tensor_fixture, cpp_tensor_test_mul);
+    FOSSIL_ADD_TEST(cpp_tensor_fixture, cpp_tensor_test_dot_vector);
+    FOSSIL_ADD_TEST(cpp_tensor_fixture, cpp_tensor_test_dot_matrix);
 
-    FOSSIL_TEST_REGISTER(cpp_tensor_fixture);
+    FOSSIL_ADD_SUITE(cpp_tensor_fixture);
 } // end of tests

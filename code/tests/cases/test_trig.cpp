@@ -17,12 +17,12 @@
  * under the License.
  *
  * Author: Michael Gene Brockus (Dreamer)
- * Date: 04/05/2014
+ * Date: 04/05/2013
  *
- * Copyright (C) 2014-2025 Fossil Logic. All rights reserved.
+ * Copyright (C) 2013-Current Fossil Logic. All rights reserved.
  * -----------------------------------------------------------------------------
  */
-#include <fossil/pizza/framework.h>
+#include <fossil/maip/framework.h>
 #include "fossil/math/framework.h"
 
 
@@ -33,7 +33,7 @@
 // mock objects are set here.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_SUITE(cpp_trig_fixture);
+FOSSIL_SUITE(cpp_trig_fixture);
 
 FOSSIL_SETUP(cpp_trig_fixture) {
     // Setup the test fixture
@@ -52,7 +52,7 @@ FOSSIL_TEARDOWN(cpp_trig_fixture) {
 // as samples for library usage.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_CASE(cpp_math_test_deg_to_rad) {
+FOSSIL_TEST(cpp_math_test_deg_to_rad) {
     double deg = 180.0;
     double expected = FOSSIL_MATH_PI;
     double result = fossil::math::Trigonometry::deg_to_rad(deg);
@@ -64,7 +64,7 @@ FOSSIL_TEST_CASE(cpp_math_test_deg_to_rad) {
     ASSUME_ITS_EQUAL_F64(result, expected, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_rad_to_deg) {
+FOSSIL_TEST(cpp_math_test_rad_to_deg) {
     double rad = FOSSIL_MATH_PI;
     double expected = 180.0;
     double result = fossil::math::Trigonometry::rad_to_deg(rad);
@@ -76,7 +76,7 @@ FOSSIL_TEST_CASE(cpp_math_test_rad_to_deg) {
     ASSUME_ITS_EQUAL_F64(result, expected, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_sin_cos_tan) {
+FOSSIL_TEST(cpp_math_test_sin_cos_tan) {
     double angle = 0.0;
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::sin(angle), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::cos(angle), 1.0, FOSSIL_TEST_FLOAT_EPSILON);
@@ -87,7 +87,7 @@ FOSSIL_TEST_CASE(cpp_math_test_sin_cos_tan) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::cos(angle), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_inverse_trig) {
+FOSSIL_TEST(cpp_math_test_inverse_trig) {
     double x = 1.0;
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::asin(x), (FOSSIL_MATH_PI / 2.0), FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::acos(x), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
@@ -97,14 +97,14 @@ FOSSIL_TEST_CASE(cpp_math_test_inverse_trig) {
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::atan2(y, z), (FOSSIL_MATH_PI / 4.0), FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_hyperbolic) {
+FOSSIL_TEST(cpp_math_test_hyperbolic) {
     double x = 0.0;
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::sinh(x), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::cosh(x), 1.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::tanh(x), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_inverse_hyperbolic) {
+FOSSIL_TEST(cpp_math_test_inverse_hyperbolic) {
     double x = 0.0;
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::asinh(x), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(fossil::math::Trigonometry::acosh(1.0), 0.0, FOSSIL_TEST_FLOAT_EPSILON);
@@ -115,12 +115,12 @@ FOSSIL_TEST_CASE(cpp_math_test_inverse_hyperbolic) {
 // * Fossil Logic Test Pool
 // * * * * * * * * * * * * * * * * * * * * * * * *
 FOSSIL_TEST_GROUP(cpp_trig_tests) {
-    FOSSIL_TEST_ADD(cpp_trig_fixture, cpp_math_test_deg_to_rad);
-    FOSSIL_TEST_ADD(cpp_trig_fixture, cpp_math_test_rad_to_deg);
-    FOSSIL_TEST_ADD(cpp_trig_fixture, cpp_math_test_sin_cos_tan);
-    FOSSIL_TEST_ADD(cpp_trig_fixture, cpp_math_test_inverse_trig);
-    FOSSIL_TEST_ADD(cpp_trig_fixture, cpp_math_test_hyperbolic);
-    FOSSIL_TEST_ADD(cpp_trig_fixture, cpp_math_test_inverse_hyperbolic);
+    FOSSIL_ADD_TEST(cpp_trig_fixture, cpp_math_test_deg_to_rad);
+    FOSSIL_ADD_TEST(cpp_trig_fixture, cpp_math_test_rad_to_deg);
+    FOSSIL_ADD_TEST(cpp_trig_fixture, cpp_math_test_sin_cos_tan);
+    FOSSIL_ADD_TEST(cpp_trig_fixture, cpp_math_test_inverse_trig);
+    FOSSIL_ADD_TEST(cpp_trig_fixture, cpp_math_test_hyperbolic);
+    FOSSIL_ADD_TEST(cpp_trig_fixture, cpp_math_test_inverse_hyperbolic);
 
-    FOSSIL_TEST_REGISTER(cpp_trig_fixture);
+    FOSSIL_ADD_SUITE(cpp_trig_fixture);
 } // end of tests

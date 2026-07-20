@@ -17,12 +17,12 @@
  * under the License.
  *
  * Author: Michael Gene Brockus (Dreamer)
- * Date: 04/05/2014
+ * Date: 04/05/2013
  *
- * Copyright (C) 2014-2025 Fossil Logic. All rights reserved.
+ * Copyright (C) 2013-Current Fossil Logic. All rights reserved.
  * -----------------------------------------------------------------------------
  */
-#include <fossil/pizza/framework.h>
+#include <fossil/maip/framework.h>
 #include "fossil/math/framework.h"
 
 
@@ -33,7 +33,7 @@
 // mock objects are set here.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_SUITE(cpp_algebra_fixture);
+FOSSIL_SUITE(cpp_algebra_fixture);
 
 FOSSIL_SETUP(cpp_algebra_fixture) {
     // Setup the test fixture
@@ -51,14 +51,14 @@ FOSSIL_TEARDOWN(cpp_algebra_fixture) {
 // as samples for library usage.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_CASE(cpp_math_test_dot_product) {
+FOSSIL_TEST(cpp_math_test_dot_product) {
     std::vector<double> a{1.0, 2.0, 3.0};
     std::vector<double> b{4.0, 5.0, 6.0};
     double result = fossil::math::Algebra::dot(a, b);
     ASSUME_ITS_EQUAL_F64(result, 32.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_vector_add) {
+FOSSIL_TEST(cpp_math_test_vector_add) {
     std::vector<double> a{1.0, 2.0, 3.0};
     std::vector<double> b{4.0, 5.0, 6.0};
     auto result = fossil::math::Algebra::add(a, b);
@@ -67,7 +67,7 @@ FOSSIL_TEST_CASE(cpp_math_test_vector_add) {
     ASSUME_ITS_EQUAL_F64(result[2], 9.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_vector_sub) {
+FOSSIL_TEST(cpp_math_test_vector_sub) {
     std::vector<double> a{5.0, 7.0, 9.0};
     std::vector<double> b{1.0, 2.0, 3.0};
     auto result = fossil::math::Algebra::sub(a, b);
@@ -76,7 +76,7 @@ FOSSIL_TEST_CASE(cpp_math_test_vector_sub) {
     ASSUME_ITS_EQUAL_F64(result[2], 6.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_scalar_mul) {
+FOSSIL_TEST(cpp_math_test_scalar_mul) {
     std::vector<double> a{1.0, -2.0, 3.0};
     auto result = fossil::math::Algebra::scalar_mul(a, 2.0);
     ASSUME_ITS_EQUAL_F64(result[0], 2.0, FOSSIL_TEST_FLOAT_EPSILON);
@@ -84,7 +84,7 @@ FOSSIL_TEST_CASE(cpp_math_test_scalar_mul) {
     ASSUME_ITS_EQUAL_F64(result[2], 6.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_matrix_mul) {
+FOSSIL_TEST(cpp_math_test_matrix_mul) {
     std::vector<double> A{1, 2, 3, 4}; // 2x2
     std::vector<double> B{5, 6, 7, 8}; // 2x2
     auto C = fossil::math::Algebra::matrix_mul(A, 2, 2, B, 2, 2);
@@ -94,7 +94,7 @@ FOSSIL_TEST_CASE(cpp_math_test_matrix_mul) {
     ASSUME_ITS_EQUAL_F64(C[3], 50.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_matrix_transpose) {
+FOSSIL_TEST(cpp_math_test_matrix_transpose) {
     std::vector<double> A{1, 2, 3, 4, 5, 6}; // 2x3
     auto T = fossil::math::Algebra::matrix_transpose(A, 2, 3);
     ASSUME_ITS_EQUAL_F64(T[0], 1.0, FOSSIL_TEST_FLOAT_EPSILON);
@@ -105,7 +105,7 @@ FOSSIL_TEST_CASE(cpp_math_test_matrix_transpose) {
     ASSUME_ITS_EQUAL_F64(T[5], 6.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_matrix_identity) {
+FOSSIL_TEST(cpp_math_test_matrix_identity) {
     auto M = fossil::math::Algebra::matrix_identity(3);
     ASSUME_ITS_EQUAL_F64(M[0], 1.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(M[1], 0.0, FOSSIL_TEST_FLOAT_EPSILON);
@@ -118,26 +118,26 @@ FOSSIL_TEST_CASE(cpp_math_test_matrix_identity) {
     ASSUME_ITS_EQUAL_F64(M[8], 1.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_matrix_determinant) {
+FOSSIL_TEST(cpp_math_test_matrix_determinant) {
     std::vector<double> M{1, 2, 3, 4}; // 2x2
     double det = fossil::math::Algebra::matrix_determinant(M, 2);
     ASSUME_ITS_EQUAL_F64(det, -2.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_poly_eval) {
+FOSSIL_TEST(cpp_math_test_poly_eval) {
     std::vector<double> coeffs{1, 2, 3}; // 1 + 2x + 3x^2
     double val = fossil::math::Algebra::poly_eval(coeffs, 2.0);
     ASSUME_ITS_EQUAL_F64(val, 17.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_poly_derivative) {
+FOSSIL_TEST(cpp_math_test_poly_derivative) {
     std::vector<double> coeffs{1, 2, 3}; // 1 + 2x + 3x^2
     auto deriv = fossil::math::Algebra::poly_derivative(coeffs);
     ASSUME_ITS_EQUAL_F64(deriv[0], 2.0, FOSSIL_TEST_FLOAT_EPSILON);
     ASSUME_ITS_EQUAL_F64(deriv[1], 6.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_poly_add) {
+FOSSIL_TEST(cpp_math_test_poly_add) {
     std::vector<double> A{1, 2, 3}; // deg 2
     std::vector<double> B{4, 5};    // deg 1
     auto result = fossil::math::Algebra::poly_add(A, B);
@@ -147,7 +147,7 @@ FOSSIL_TEST_CASE(cpp_math_test_poly_add) {
     ASSUME_ITS_EQUAL_F64(result[2], 3.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_poly_mul) {
+FOSSIL_TEST(cpp_math_test_poly_mul) {
     std::vector<double> A{1, 2}; // 1 + 2x
     std::vector<double> B{3, 4}; // 3 + 4x
     auto result = fossil::math::Algebra::poly_mul(A, B);
@@ -157,7 +157,7 @@ FOSSIL_TEST_CASE(cpp_math_test_poly_mul) {
     ASSUME_ITS_EQUAL_F64(result[2], 8.0, FOSSIL_TEST_FLOAT_EPSILON);
 }
 
-FOSSIL_TEST_CASE(cpp_math_test_solve_quadratic_real) {
+FOSSIL_TEST(cpp_math_test_solve_quadratic_real) {
     auto roots = fossil::math::Algebra::solve_quadratic(1, -3, 2); // x^2 - 3x + 2 = 0
     ASSUME_ITS_TRUE(
         (fabs(roots[0] - 2.0) < FOSSIL_TEST_FLOAT_EPSILON && fabs(roots[1] - 1.0) < FOSSIL_TEST_FLOAT_EPSILON) ||
@@ -169,19 +169,19 @@ FOSSIL_TEST_CASE(cpp_math_test_solve_quadratic_real) {
 // * Fossil Logic Test Pool
 // * * * * * * * * * * * * * * * * * * * * * * * *
 FOSSIL_TEST_GROUP(cpp_algebra_tests) {
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_matrix_transpose);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_matrix_identity);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_matrix_determinant);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_poly_eval);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_poly_derivative);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_poly_add);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_poly_mul);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_scalar_mul);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_matrix_mul);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_solve_quadratic_real);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_vector_add);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_vector_sub);
-    FOSSIL_TEST_ADD(cpp_algebra_fixture, cpp_math_test_dot_product);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_matrix_transpose);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_matrix_identity);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_matrix_determinant);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_poly_eval);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_poly_derivative);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_poly_add);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_poly_mul);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_scalar_mul);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_matrix_mul);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_solve_quadratic_real);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_vector_add);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_vector_sub);
+    FOSSIL_ADD_TEST(cpp_algebra_fixture, cpp_math_test_dot_product);
 
-    FOSSIL_TEST_REGISTER(cpp_algebra_fixture);
+    FOSSIL_ADD_SUITE(cpp_algebra_fixture);
 } // end of tests

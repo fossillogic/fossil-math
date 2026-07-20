@@ -17,12 +17,12 @@
  * under the License.
  *
  * Author: Michael Gene Brockus (Dreamer)
- * Date: 04/05/2014
+ * Date: 04/05/2013
  *
- * Copyright (C) 2014-2025 Fossil Logic. All rights reserved.
+ * Copyright (C) 2013-Current Fossil Logic. All rights reserved.
  * -----------------------------------------------------------------------------
  */
-#include <fossil/pizza/framework.h>
+#include <fossil/maip/framework.h>
 #include "fossil/math/framework.h"
 
 
@@ -33,7 +33,7 @@
 // mock objects are set here.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_SUITE(c_tensor_fixture);
+FOSSIL_SUITE(c_tensor_fixture);
 
 FOSSIL_SETUP(c_tensor_fixture) {
     // Setup the test fixture
@@ -51,7 +51,7 @@ FOSSIL_TEARDOWN(c_tensor_fixture) {
 // as samples for library usage.
 // * * * * * * * * * * * * * * * * * * * * * * * *
 
-FOSSIL_TEST_CASE(c_tensor_test_create_and_free) {
+FOSSIL_TEST(c_tensor_test_create_and_free) {
     size_t shape[] = {2, 3};
     fossil_math_tensor_t* t = fossil_math_tensor_create(shape, 2);
     ASSUME_ITS_TRUE(t != NULL);
@@ -60,7 +60,7 @@ FOSSIL_TEST_CASE(c_tensor_test_create_and_free) {
     fossil_math_tensor_free(t);
 }
 
-FOSSIL_TEST_CASE(c_tensor_test_set_and_get) {
+FOSSIL_TEST(c_tensor_test_set_and_get) {
     size_t shape[] = {2, 2};
     fossil_math_tensor_t* t = fossil_math_tensor_create(shape, 2);
     size_t idx[] = {1, 0};
@@ -70,7 +70,7 @@ FOSSIL_TEST_CASE(c_tensor_test_set_and_get) {
     fossil_math_tensor_free(t);
 }
 
-FOSSIL_TEST_CASE(c_tensor_test_fill) {
+FOSSIL_TEST(c_tensor_test_fill) {
     size_t shape[] = {3};
     fossil_math_tensor_t* t = fossil_math_tensor_create(shape, 1);
     fossil_math_tensor_fill(t, 7.0);
@@ -82,7 +82,7 @@ FOSSIL_TEST_CASE(c_tensor_test_fill) {
     fossil_math_tensor_free(t);
 }
 
-FOSSIL_TEST_CASE(c_tensor_test_add) {
+FOSSIL_TEST(c_tensor_test_add) {
     size_t shape[] = {2};
     fossil_math_tensor_t* a = fossil_math_tensor_create(shape, 1);
     size_t idx0[] = {0}, idx1[] = {1};
@@ -103,7 +103,7 @@ FOSSIL_TEST_CASE(c_tensor_test_add) {
     fossil_math_tensor_free(r);
 }
 
-FOSSIL_TEST_CASE(c_tensor_test_mul) {
+FOSSIL_TEST(c_tensor_test_mul) {
     size_t shape[] = {2};
     fossil_math_tensor_t* a = fossil_math_tensor_create(shape, 1);
     size_t idx0[] = {0}, idx1[] = {1};
@@ -124,7 +124,7 @@ FOSSIL_TEST_CASE(c_tensor_test_mul) {
     fossil_math_tensor_free(r);
 }
 
-FOSSIL_TEST_CASE(c_tensor_test_dot_vector) {
+FOSSIL_TEST(c_tensor_test_dot_vector) {
     size_t shape[] = {3};
     fossil_math_tensor_t* a = fossil_math_tensor_create(shape, 1);
     fossil_math_tensor_t* b = fossil_math_tensor_create(shape, 1);
@@ -142,7 +142,7 @@ FOSSIL_TEST_CASE(c_tensor_test_dot_vector) {
     fossil_math_tensor_free(r);
 }
 
-FOSSIL_TEST_CASE(c_tensor_test_dot_matrix) {
+FOSSIL_TEST(c_tensor_test_dot_matrix) {
     size_t shapeA[] = {2, 2};
     size_t shapeB[] = {2, 2};
     fossil_math_tensor_t* a = fossil_math_tensor_create(shapeA, 2);
@@ -174,13 +174,13 @@ FOSSIL_TEST_CASE(c_tensor_test_dot_matrix) {
 // * Fossil Logic Test Pool
 // * * * * * * * * * * * * * * * * * * * * * * * *
 FOSSIL_TEST_GROUP(c_tensor_tests) {
-    FOSSIL_TEST_ADD(c_tensor_fixture, c_tensor_test_create_and_free);
-    FOSSIL_TEST_ADD(c_tensor_fixture, c_tensor_test_set_and_get);
-    FOSSIL_TEST_ADD(c_tensor_fixture, c_tensor_test_fill);
-    FOSSIL_TEST_ADD(c_tensor_fixture, c_tensor_test_add);
-    FOSSIL_TEST_ADD(c_tensor_fixture, c_tensor_test_mul);
-    FOSSIL_TEST_ADD(c_tensor_fixture, c_tensor_test_dot_vector);
-    FOSSIL_TEST_ADD(c_tensor_fixture, c_tensor_test_dot_matrix);
+    FOSSIL_ADD_TEST(c_tensor_fixture, c_tensor_test_create_and_free);
+    FOSSIL_ADD_TEST(c_tensor_fixture, c_tensor_test_set_and_get);
+    FOSSIL_ADD_TEST(c_tensor_fixture, c_tensor_test_fill);
+    FOSSIL_ADD_TEST(c_tensor_fixture, c_tensor_test_add);
+    FOSSIL_ADD_TEST(c_tensor_fixture, c_tensor_test_mul);
+    FOSSIL_ADD_TEST(c_tensor_fixture, c_tensor_test_dot_vector);
+    FOSSIL_ADD_TEST(c_tensor_fixture, c_tensor_test_dot_matrix);
 
-    FOSSIL_TEST_REGISTER(c_tensor_fixture);
+    FOSSIL_ADD_SUITE(c_tensor_fixture);
 } // end of tests
